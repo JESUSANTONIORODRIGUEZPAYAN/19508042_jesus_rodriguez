@@ -1,17 +1,38 @@
-SHOW ssl;
+CREATE TABLE clientes_soporte (
+    id BIGSERIAL,
+    nombre VARCHAR(120),
+    correo VARCHAR(150),
+    telefono VARCHAR(20),
+    rfc VARCHAR(13),
+    edad INTEGER,
+    ciudad VARCHAR(80),
+    codigo_postal VARCHAR(10),
+    fecha_alta DATE
+);
 
-SHOW ssl_min_protocol_version;
-SHOW port;
 
-SHOW listen_addresses;
 
+CREATE TABLE clientes_soportes (
+    id BIGINT PRIMARY KEY,
+    nombre VARCHAR(120) NOT NULL,
+    correo VARCHAR(150) NOT NULL,
+    telefono VARCHAR(20)
+);
+
+
+
+
+INSERT INTO clientes_soportes (
+    id,
+    nombre,
+    correo,
+    telefono
+)
 SELECT
-    inet_client_addr(),
-    inet_client_port();
+    id,
+    nombre,
+    correo,
+    telefono
+FROM cliente;
 
-	SELECT
-    ssl,
-    version,
-    cipher
-FROM pg_stat_ssl
-WHERE pid = pg_backend_pid();
+SELECT *FROM clientes_soporte;
